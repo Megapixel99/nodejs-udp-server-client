@@ -3,7 +3,11 @@ const client = udp.createSocket("udp4");
 const serverPort = process.env.PORT || 41234;
 const serverIp = process.env.SERVER_IP || "0.0.0.0";
 
-const data = Buffer.from("Message from UDP client");
+const data = Buffer.from(JSON.stringify({
+  "app": "myapp",
+  "message": "Error on L50 in thisorthat.js file",
+  "file": "thisorthat.js"
+}));
 
 client.on("message", (message, info) => {
     console.log(`client got: ${message} from ${info.address}:${info.port}`);
